@@ -30,7 +30,7 @@ class Post(models.Model):
 
  #For comments that is to added on to the particular post
 class Comments(models.Model):
-	post = models.ForeignKey('blog.Post' ,related_name = 'comments',on_delete=models.CASCADE)
+	post = models.ForeignKey('blog_app.Post' ,related_name = 'comments',on_delete=models.CASCADE)
 	author = models.CharField(max_length=200)
 	text = models.TextField()
 	create_date = models.DateTimeField(default = timezone.now())
