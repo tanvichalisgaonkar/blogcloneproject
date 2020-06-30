@@ -11,3 +11,22 @@
 .centerstage{
 	margin: auto;
 }
+
+.postdate{
+	text-align: center;
+}
+
+.posttitle{
+	font-family: 'Pangolin' ,cursive;
+	font-size: 3em;
+	text-align: center;
+}
+
+.postcontent{
+	font-size: 1.5em;
+}
+
+.btn-comment{
+	position: absolute;
+	right: 0px; 
+}
