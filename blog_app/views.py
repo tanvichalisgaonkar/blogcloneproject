@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.utils import timezone
 from django.urls import reverse_lazy
-from blog_app.models import Post,Comment
+from blog_app.models import Post,Comments
 from blog_app.forms import PostForm,CommentForm
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -68,13 +68,13 @@ def add_comment_to_post(request,pk):
 
 @login_required
 def comment_approve(request,pk):
-	comment = get_object_or_404(Comment,pk = pk)
+	comment = get_object_or_404(Comments,pk = pk)
 	comment.approve()
 	return redirect('post_detail',pk=comment.post.pk)
 
 @login_required
 def comment_remove(request,pk):
-	comment = get_object_or_404(Comment,pk= pk)
+	comment = get_object_or_404(Comments,pk= pk)
 	post_pk = comment.post.pk
 	comment.delete()
 	return redirect('post_detail',pk=post_pk)
