@@ -9,7 +9,7 @@ class Post(models.Model):
 	author = models.ForeignKey('auth.User',on_delete = models.CASCADE)
 	title = models.CharField(max_length =200)
 	text = models.TextField()
-	created_date = models.DateTimeField(default = timezone.now())
+	created_date = models.DateTimeField(default = timezone.now)
 	published_date = models.DateTimeField(blank = True,null=True)
 
 	def publish(self):
@@ -17,7 +17,7 @@ class Post(models.Model):
 		self.save()
 
 	def approve_comment(self):
-		return self.comments.filter(approved_comment = True)
+		return self.comment.filter(approved_comment = True)
 
 	def get_absolute_url(self):
 		return reverse("post_detail",kwargs={'pk':self.pk})
@@ -30,14 +30,15 @@ class Post(models.Model):
 
  #For comments that is to added on to the particular post
 class Comments(models.Model):
-	post = models.ForeignKey('blog_app.Post' ,related_name = 'comments',on_delete=models.CASCADE)
+	post = models.ForeignKey('blog_app.Post' ,related_name = 'comment',on_delete=models.CASCADE)
 	author = models.CharField(max_length=200)
 	text = models.TextField()
 	created_date = models.DateTimeField(default = timezone.now())
 	approved_comment = models.BooleanField(default = False)
 
-	def approve(sel):
-		self.approved_comment = True
+	def approves(self):
+		print("reach model")
+		self.approved_comment=True
 		self.save()
 
 	def get_absolute_url(self):
